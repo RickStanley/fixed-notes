@@ -21,8 +21,8 @@ namespace App2
         {
             this.InitializeComponent();
 
-            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(300, 400));
-            ApplicationView.PreferredLaunchViewSize = new Size(300, 400);
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(300, 300));
+            ApplicationView.PreferredLaunchViewSize = new Size(300, 300);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
@@ -59,11 +59,13 @@ namespace App2
             {
                 TitleBarAddButton.Opacity = 0.5;
                 TitleBarSettingsButton.Opacity = 0.5;
+                RichTextBar.ClosedDisplayMode = AppBarClosedDisplayMode.Hidden;
             }
             else
             {
                 TitleBarSettingsButton.Opacity = 1.0;
                 TitleBarAddButton.Opacity = 1.0;
+                RichTextBar.ClosedDisplayMode = AppBarClosedDisplayMode.Compact;
             }
         }
 
@@ -100,7 +102,7 @@ namespace App2
                 await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
 
                     // Load the file into the Document property of the RichEditBox.
-                    editor.Document.LoadFromStream(Windows.UI.Text.TextSetOptions.FormatRtf, randAccStream);
+                    Editor.Document.LoadFromStream(Windows.UI.Text.TextSetOptions.FormatRtf, randAccStream);
                 }
                 catch (Exception)
                 {
@@ -137,7 +139,7 @@ namespace App2
                 Windows.Storage.Streams.IRandomAccessStream randAccStream =
                     await file.OpenAsync(Windows.Storage.FileAccessMode.ReadWrite);
 
-                editor.Document.SaveToStream(Windows.UI.Text.TextGetOptions.FormatRtf, randAccStream);
+                Editor.Document.SaveToStream(Windows.UI.Text.TextGetOptions.FormatRtf, randAccStream);
 
                 // Let Windows know that we're finished changing the file so the
                 // other app can update the remote version of the file.
@@ -153,7 +155,7 @@ namespace App2
 
         private void BoldButton_Click(object sender, RoutedEventArgs e)
         {
-            Windows.UI.Text.ITextSelection selectedText = editor.Document.Selection;
+            Windows.UI.Text.ITextSelection selectedText = Editor.Document.Selection;
             if (selectedText != null)
             {
                 Windows.UI.Text.ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
@@ -164,7 +166,7 @@ namespace App2
 
         private void ItalicButton_Click(object sender, RoutedEventArgs e)
         {
-            Windows.UI.Text.ITextSelection selectedText = editor.Document.Selection;
+            Windows.UI.Text.ITextSelection selectedText = Editor.Document.Selection;
             if (selectedText != null)
             {
                 Windows.UI.Text.ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
@@ -175,7 +177,7 @@ namespace App2
 
         private void UnderlineButton_Click(object sender, RoutedEventArgs e)
         {
-            Windows.UI.Text.ITextSelection selectedText = editor.Document.Selection;
+            Windows.UI.Text.ITextSelection selectedText = Editor.Document.Selection;
             if (selectedText != null)
             {
                 Windows.UI.Text.ITextCharacterFormat charFormatting = selectedText.CharacterFormat;

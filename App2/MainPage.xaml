@@ -58,6 +58,7 @@
             <AutoSuggestBox
                 PlaceholderText="Search..."
                 QueryIcon="Find"
+                Style="{StaticResource AutoSuggestBoxStyleCustom}"
                 TextChanged="AutoSuggestBox_TextChanged" />
             <ListView
                 Padding="0,5,0,10"

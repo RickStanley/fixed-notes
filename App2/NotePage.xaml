@@ -19,42 +19,51 @@
                     x:Name="openFileButton"
                     Click="OpenButton_Click"
                     Icon="OpenFile"
+                    Label="Open file"
                     ToolTipService.ToolTip="Open file" />
                 <AppBarButton
                     Click="SaveButton_Click"
                     Icon="Save"
+                    Label="Save file"
                     RelativePanel.RightOf="openFileButton"
                     ToolTipService.ToolTip="Save file" />
             </CommandBar.SecondaryCommands>
-            <AppBarButton Click="BoldButton_Click" Icon="Bold" />
+            <AppBarButton
+                Click="BoldButton_Click"
+                Icon="Bold"
+                Label="Bold" />
             <AppBarButton
                 x:Name="italicButton"
                 Click="ItalicButton_Click"
-                Icon="Italic" />
+                Icon="Italic"
+                Label="Italic" />
             <AppBarButton
                 x:Name="underlineButton"
                 Click="UnderlineButton_Click"
-                Icon="Underline" />
-            <AppBarButton>
+                Icon="Underline"
+                Label="Underline" />
+            <AppBarButton Label="Strikethrough">
                 <AppBarButton.Icon>
                     <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xEDE0;" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Icon="List" />
-            <AppBarButton>
+            <AppBarButton Icon="List" Label="List" />
+            <AppBarButton Label="Insert image">
                 <AppBarButton.Icon>
                     <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xEB9F;" />
                 </AppBarButton.Icon>
             </AppBarButton>
         </CommandBar>
     </Page.BottomAppBar>
-    <!--<Page.TopAppBar>
-        <CommandBar ClosedDisplayMode="Compact">
-            <AppBarButton Icon="Accept" />
-        </CommandBar>
-    </Page.TopAppBar>-->
-    <StackPanel>
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Translation="0 0 0">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid
+            Grid.Row="0"
+            Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+            Translation="0 0 0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
@@ -87,6 +96,12 @@
                 FontFamily="Segoe MDL2 Assets"
                 ToolTipService.ToolTip="Settings" />
         </Grid>
-        <RichEditBox x:Name="editor" VerticalAlignment="Stretch" />
-    </StackPanel>
+        <RichEditBox
+            x:Name="Editor"
+            Grid.Row="1"
+            VerticalAlignment="Stretch"
+            VerticalContentAlignment="Stretch"
+            CornerRadius="0"
+            Style="{StaticResource RichEditBoxStyleCustom}" />
+    </Grid>
 </Page>
