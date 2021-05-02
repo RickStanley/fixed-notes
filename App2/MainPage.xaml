@@ -1,0 +1,139 @@
+﻿<Page
+    x:Class="App2.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:App2"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <Style x:Key="ListViewItemStretchStyle" TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="0,6,0,0" />
+        </Style>
+    </Page.Resources>
+
+    <StackPanel>
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="AppTitleBar" Background="Transparent" />
+
+            <!--
+                This Button has a higher z-order than AppTitleBar,
+                so it receives user input.
+            -->
+            <Button
+                x:Name="TitleBarAddButton"
+                Padding="10"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Stretch"
+                Background="Transparent"
+                Content="&#xE710;"
+                CornerRadius="0"
+                FontFamily="Segoe MDL2 Assets"
+                ToolTipService.ToolTip="New Note" />
+            <Button
+                x:Name="TitleBarSettingsButton"
+                Padding="10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Stretch"
+                Background="Transparent"
+                Content="&#xE713;"
+                CornerRadius="0"
+                FontFamily="Segoe MDL2 Assets"
+                ToolTipService.ToolTip="Settings" />
+        </Grid>
+        <StackPanel Padding="10,0">
+            <TextBlock
+                Margin="0,0,0,10"
+                FontSize="21"
+                FontWeight="Bold"
+                Text="Kurnotizen" />
+            <AutoSuggestBox
+                PlaceholderText="Search..."
+                QueryIcon="Find"
+                TextChanged="AutoSuggestBox_TextChanged" />
+            <ListView
+                Padding="0,5,0,10"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                BorderThickness="0"
+                ItemContainerStyle="{StaticResource ListViewItemStretchStyle}"
+                ItemsSource="{x:Bind Notes}"
+                SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Note">
+                        <Button
+                            x:Name="Card"
+                            Padding="0"
+                            HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            Background="{StaticResource CardColor}"
+                            CornerRadius="2"
+                            DoubleTapped="Button_DoubleTapped"
+                            PointerEntered="Button_PointerEntered"
+                            PointerExited="Button_PointerExited">
+                            <StackPanel>
+                                <Border
+                                    Height="2"
+                                    Margin="-1,-1,-1,0"
+                                    VerticalAlignment="Top"
+                                    Background="{x:Bind Color}"
+                                    BorderThickness="0"
+                                    CornerRadius="2 2 0 0" />
+                                <RelativePanel
+                                    Height="25"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Stretch">
+                                    <DropDownButton
+                                        x:Name="DropDown"
+                                        Height="25"
+                                        Background="Transparent"
+                                        RelativePanel.AlignVerticalCenterWithPanel="True"
+                                        Visibility="Collapsed">
+                                        <TextBlock
+                                            VerticalAlignment="Center"
+                                            FontSize="10"
+                                            Text="Actions" />
+                                        <DropDownButton.Flyout>
+                                            <MenuFlyout
+                                                Closed="MenuFlyout_Closed"
+                                                Opening="MenuFlyout_Opening"
+                                                Placement="BottomEdgeAlignedLeft">
+                                                <MenuFlyoutItem Tag="open" Text="Open note">
+                                                    <MenuFlyoutItem.Icon>
+                                                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE70B;" />
+                                                    </MenuFlyoutItem.Icon>
+                                                </MenuFlyoutItem>
+                                                <MenuFlyoutItem
+                                                    Icon="Delete"
+                                                    Tag="delete"
+                                                    Text="Delete note" />
+                                            </MenuFlyout>
+                                        </DropDownButton.Flyout>
+                                    </DropDownButton>
+                                    <TextBlock
+                                        x:Name="Date"
+                                        Margin="0,0,8,0"
+                                        VerticalAlignment="Stretch"
+                                        FontSize="10"
+                                        Foreground="{x:Bind Color}"
+                                        RelativePanel.AlignVerticalCenterWithPanel="True"
+                                        Text="27. Apr" />
+                                </RelativePanel>
+                                <TextBlock Padding="10,0,10,10" Text="{x:Bind Content}" />
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+    </StackPanel>
+</Page>
