@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
@@ -92,7 +93,10 @@ namespace App2
 
         private async void Button_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            await OpenPageAsWindowAsync(typeof(NotePage));
+            var parameters = new NotePageParams();
+            parameters.Note = (e.OriginalSource as FrameworkElement).DataContext as Note;
+
+            await OpenPageAsWindowAsync(typeof(NotePage), parameters);
         }
 
         /// <summary>
@@ -100,7 +104,7 @@ namespace App2
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
-        private async Task<bool> OpenPageAsWindowAsync(Type t)
+        private async Task<bool> OpenPageAsWindowAsync(Type t, NotePageParams notePageParams)
         {
             var view = CoreApplication.CreateNewView();
             int id = 0;
@@ -108,7 +112,7 @@ namespace App2
             await view.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 var frame = new Frame();
-                frame.Navigate(t, null);
+                frame.Navigate(t, notePageParams);
                 Window.Current.Content = frame;
                 Window.Current.Activate();
                 id = ApplicationView.GetForCurrentView().Id;
@@ -161,5 +165,6 @@ namespace App2
             HiddenTextBlock = null;
             OpenDropDown = null;
         }
+
     }
 }

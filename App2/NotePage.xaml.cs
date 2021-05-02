@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.UI;
@@ -7,16 +8,24 @@ using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 // Die Elementvorlage "Leere Seite" wird unter https://go.microsoft.com/fwlink/?LinkId=234238 dokumentiert.
 
 namespace App2
 {
+    public class NotePageParams
+    {
+        public NotePageParams() { }
+        public Note Note { get; set; }
+    }
+
     /// <summary>
     /// Eine leere Seite, die eigenständig verwendet oder zu der innerhalb eines Rahmens navigiert werden kann.
     /// </summary>
     public sealed partial class NotePage : Page
     {
+        public Note Note;
         public NotePage()
         {
             this.InitializeComponent();
@@ -51,6 +60,13 @@ namespace App2
             titleBar.InactiveBackgroundColor = Colors.Transparent;
             titleBar.ButtonInactiveForegroundColor = Color.FromArgb(255,33,33,33);
             titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            var parameters = (NotePageParams)e.Parameter;
+            Note = parameters.Note;
         }
 
         private void Current_Activated(object sender, WindowActivatedEventArgs e)
@@ -203,5 +219,7 @@ namespace App2
                 selectedText.CharacterFormat = charFormatting;
             }
         }
+
     }
+
 }
