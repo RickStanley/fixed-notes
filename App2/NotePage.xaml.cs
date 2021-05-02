@@ -192,5 +192,16 @@ namespace App2
                 selectedText.CharacterFormat = charFormatting;
             }
         }
+
+        private void StrikethroughButton_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.UI.Text.ITextSelection selectedText = Editor.Document.Selection;
+            if (selectedText != null)
+            {
+                Windows.UI.Text.ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
+                charFormatting.Strikethrough = Windows.UI.Text.FormatEffect.Toggle;
+                selectedText.CharacterFormat = charFormatting;
+            }
+        }
     }
 }

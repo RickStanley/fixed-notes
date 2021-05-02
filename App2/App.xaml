@@ -19,11 +19,11 @@
                             <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="{ThemeResource Greyed}" />
                             <Style x:Key="RichEditBoxStyleCustom" TargetType="RichEditBox">
                                 <Setter Property="Foreground" Value="{ThemeResource TextControlForeground}" />
-                                <Setter Property="Background" Value="{ThemeResource TextControlBackground}" />
+                                <Setter Property="Background" Value="{ThemeResource GreyDark}" />
                                 <Setter Property="ContentLinkForegroundColor" Value="{ThemeResource ContentLinkForegroundColor}" />
                                 <Setter Property="ContentLinkBackgroundColor" Value="{ThemeResource ContentLinkBackgroundColor}" />
                                 <Setter Property="SelectionHighlightColor" Value="{ThemeResource TextControlSelectionHighlightColor}" />
-                                <Setter Property="BorderBrush" Value="{ThemeResource TextControlBorderBrush}" />
+                                <Setter Property="BorderBrush" Value="{ThemeResource GreyDark}" />
                                 <Setter Property="BorderThickness" Value="{ThemeResource TextControlBorderThemeThickness}" />
                                 <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
                                 <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />

@@ -11,9 +11,8 @@
     <Page.BottomAppBar>
         <CommandBar
             x:Name="RichTextBar"
-            HorizontalAlignment="Left"
-            HorizontalContentAlignment="Left"
-            ClosedDisplayMode="Compact">
+            ClosedDisplayMode="Compact"
+            FlowDirection="RightToLeft">
             <CommandBar.SecondaryCommands>
                 <AppBarButton
                     x:Name="openFileButton"
@@ -42,7 +41,7 @@
                 Click="UnderlineButton_Click"
                 Icon="Underline"
                 Label="Underline" />
-            <AppBarButton Label="Strikethrough">
+            <AppBarButton Click="StrikethroughButton_Click" Label="Strikethrough">
                 <AppBarButton.Icon>
                     <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xEDE0;" />
                 </AppBarButton.Icon>
