@@ -46,7 +46,10 @@
                     <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xEDE0;" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Icon="List" Label="List" />
+            <AppBarButton
+                Click="ListButton_Click"
+                Icon="List"
+                Label="List" />
             <AppBarButton Label="Insert image">
                 <AppBarButton.Icon>
                     <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xEB9F;" />

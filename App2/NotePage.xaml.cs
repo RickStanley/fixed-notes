@@ -223,6 +223,16 @@ namespace App2
             }
         }
 
+        private void ListButton_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.UI.Text.ITextSelection selectedText = Editor.Document.Selection;
+            if (selectedText != null)
+            {
+                Windows.UI.Text.ITextParagraphFormat paragraphFormatting = selectedText.ParagraphFormat;
+                paragraphFormatting.ListType = Windows.UI.Text.MarkerType.Bullet;
+                selectedText.ParagraphFormat = paragraphFormatting;
+            }
+        }
     }
 
 }
