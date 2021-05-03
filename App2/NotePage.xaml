@@ -60,6 +60,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid
+            x:Name="TitleBarActions"
             Grid.Row="0"
             Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
             Translation="0 0 0">
@@ -67,8 +68,11 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
+            <Grid.TranslationTransition>
+                <Vector3Transition Duration="00:00:00.10" />
+            </Grid.TranslationTransition>
 
-            <Grid x:Name="AppTitleBar" Background="Transparent" />
+            <Grid x:Name="AppTitleBar" Background="Tomato" />
 
             <!--
                 This Button has a higher z-order than AppTitleBar,
@@ -76,7 +80,6 @@
             -->
             <Button
                 x:Name="TitleBarAddButton"
-                Padding="10"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Stretch"
                 Background="Transparent"
@@ -86,7 +89,6 @@
                 ToolTipService.ToolTip="New Note" />
             <Button
                 x:Name="TitleBarSettingsButton"
-                Padding="10"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Stretch"
                 Background="Transparent"

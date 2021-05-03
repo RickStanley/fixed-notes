@@ -73,15 +73,18 @@ namespace App2
         {
             if (e.WindowActivationState == CoreWindowActivationState.Deactivated)
             {
+                double translateRatio = TitleBarActions.ActualHeight / 4;
                 TitleBarAddButton.Opacity = 0.5;
                 TitleBarSettingsButton.Opacity = 0.5;
                 RichTextBar.ClosedDisplayMode = AppBarClosedDisplayMode.Hidden;
+                TitleBarActions.Translation = new System.Numerics.Vector3(0, (float)(Math.Ceiling(TitleBarActions.ActualHeight - translateRatio) * -1), 0);
             }
             else
             {
                 TitleBarSettingsButton.Opacity = 1.0;
                 TitleBarAddButton.Opacity = 1.0;
                 RichTextBar.ClosedDisplayMode = AppBarClosedDisplayMode.Compact;
+                TitleBarActions.Translation = new System.Numerics.Vector3(0, 0, 0);
             }
         }
 
